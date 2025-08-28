@@ -1,0 +1,30 @@
+.index-cards
+    //border 1px solid alpha + 10%
+    display grid
+    grid-template-columns repeat(auto-fill, minmax(360px, 1fr))
+    gap 1rem
+    margin 2rem auto
+    width 100%
+    .index-card 
+        background alpha + 10%
+        min-height 200px
+    .excerpt
+        padding 1rem
+        font-size 1.2rem
+        color alpha + 80%
+    figure  
+        //border 1px solid blue //alpha + 10%
+        display grid
+        grid-template-columns 1fr
+        grid-template-rows 1fr
+    img, figcaption, .card-excerpt
+        border 1px solid alpha + 10%
+        width 100% 
+        grid-column: 1 / 2
+        grid-row: 1 / 2
+    figcaption h3
+        padding 1rem
+        font-size clamp(1.2rem, 2vw, 1.8rem)
+        color alpha + 90%
+
+    

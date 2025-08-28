@@ -1,0 +1,25 @@
+.banner.single-banner 
+
+    .banner-data
+      if isIndex
+        h1= title
+        h3 below title 1
+        p= description
+      else if post && post.title
+        h1= post.title
+        p= description
+      else if page && page.title
+        h1= page.title
+        p= description
+      else
+        p= description
+
+    .banner-bar 
+        nav
+            a(href="/") Home
+            //- a(href="/dashboard") Dashboard
+            //- a(href="/register") Register
+        form#searchForm(action="javascript:void(0)" method="GET")
+            input#searchInput(type="text" placeholder="Search posts..." autocomplete="off")
+            ul#searchResults
+

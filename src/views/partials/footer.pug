@@ -1,0 +1,30 @@
+footer.site-footer
+    .footer-grid
+        .footer-item-wrap
+            .footer-item
+                h3.sloped-heading.solid Categories
+                if categories && categories.length
+                    ul.ct-grid
+                        each category in categories
+                            li
+                                a(href=`/category/${category.slug}`) #{category.name}
+                else
+                    p No categories found.
+        .footer-item-wrap
+
+            .footer-item
+                h3.sloped-heading.solid Tags
+                if tags && tags.length
+                    ul.ct-grid
+                        each tag in tags
+                            li
+                                a(href=`/tag/${tag.slug}`) #{tag.name}
+                else
+                    p No tags found.
+        .footer-item-wrap
+            h3.sloped-heading.solid Information
+            .footer-item.required 
+                a(href="/contact") Contact Us
+                a(href="/required/privacy-policy") Privacy Policy
+                a(href="/required/terms-of-service") Terms of Service
+                a(href="/required/about") About Us

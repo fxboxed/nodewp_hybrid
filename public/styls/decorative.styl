@@ -1,0 +1,15 @@
+grad = 50deg, alpha, alpha + 20%, alpha + 30%
+.sloped-heading
+    background linear-gradient(grad 50%, transparent 50%)
+    width 100%
+    border-bottom 2px solid  alpha + 20% //gamma
+    text-align: left
+    font-size clamp(1.2rem, 2vw, 1.4rem)
+    padding .6rem
+
+.sloped-heading.solid
+    background linear-gradient(grad 50%, alpha + 15% 50%)
+    width 100%
+    border-bottom 2px solid  alpha + 20% //gamma
+    text-align: left
+    font-size clamp(1.2rem, 2vw, 1.4rem)

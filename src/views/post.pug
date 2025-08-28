@@ -1,0 +1,20 @@
+//- src/views/post.pug
+extends ./layout
+
+block content
+
+  .main-aside-grid
+    main
+      //- h1= post.title
+      p Category: 
+        a(href=`/taxonomy/category/${post.category}`)= post.categoryName
+      p Tags:
+        if post.tagNames && post.tagNames.length
+          each t, i in post.tagNames
+            | #{t}#{i < post.tagNames.length - 1 ? ', ' : ''}
+        else
+          | none  
+    aside
+      h1 aside
+      //- Since post.content may contain markdown in future, we keep simple for now
+      //-pre= post.content

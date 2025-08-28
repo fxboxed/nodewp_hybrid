@@ -1,0 +1,65 @@
+//- _pagination.pug
+if pagination && pagination.total > 1
+  - const current = pagination.current;
+  - const total = pagination.total;
+  - const base = pagination.base || '';
+
+  // Calculate start and end pages for a 3-page window around current
+  - let startPage = current - 1;
+  - let endPage = current + 1;
+
+  // Adjust if near the start
+  if current <= 2
+    - startPage = 1;
+    - endPage = 3;
+
+  // Adjust if near the end
+  if current >= total - 1
+    - startPage = total - 2;
+    - endPage = total;
+
+  // Clamp pages to valid range
+  if startPage < 1
+    - startPage = 1;
+  if endPage > total
+    - endPage = total;
+
+  nav.pagination
+    ul
+      // Prev button
+      li(class=(current === 1 ? 'disabled' : ''))
+        if current === 1
+          span.curr Prev
+        else
+          a(href=`${base}/page/${current - 1}`) Prev
+
+      // Always show first page if not in the neighbors
+      if startPage > 1
+        li
+          a(href=`${base}/page/1`) 1
+
+      // Ellipsis after first page
+      if startPage > 2
+        li.ellipsis &hellip;
+
+      // Render page numbers from startPage to endPage
+      - for (let i = startPage; i <= endPage; i++)
+        li(class=(i === current ? 'active' : ''))
+          if i === current
+            span= i
+          else
+            a(href=`${base}/page/${i}`)= i
+
+      // Ellipsis before last page
+      if endPage < total - 1
+        li.ellipsis &hellip;
+
+      // Always show last page if not in the neighbors
+      if endPage < total
+        li
+          a(href=`${base}/page/${total}`)= total
+
+      // Next button - show only if not on last page
+      if current < total
+        li
+          a(href=`${base}/page/${current + 1}`) Next

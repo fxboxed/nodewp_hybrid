@@ -1,0 +1,19 @@
+//- src/views/taxonomy.pug
+extends ./layout
+
+block content
+  h1 #{taxonomyName} (#{type})
+  if posts && posts.length
+    each p in posts
+      article
+        h2
+          a(href=`/post/${p.slug}`)= p.title
+        p= p.excerpt
+        hr
+        h3 some stuff
+  else
+    p No posts in this #{type} yet.
+
+  if paginationBase
+    include ./partials/pagination
+    +pager(page, totalPages, paginationBase)

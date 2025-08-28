@@ -1,0 +1,13 @@
+//- src/views/legal.pug
+extends ./layout
+
+
+block content
+  .main-aside-grid
+    main
+      h1= title
+      p= body
+    aside
+      h1 aside
+      //- Since post.content may contain markdown in future, we keep simple for now
+      //-pre= post.content

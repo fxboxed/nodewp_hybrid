@@ -1,0 +1,27 @@
+{
+  "name": "nodewp_hybrid",
+  "version": "1.0.0",
+  "description": "Node + WordPress hybrid (Stage 1: Node only, with routes & pagination)",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "stylus": "stylus -w public/styls/main.styl -o public/css/main.css",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "bcryptjs": "3.0.2",
+    "connect-flash": "0.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.17.3",
+    "nodemailer": "^6.9.14",
+    "pug": "^3.0.2",
+    "stylus": "^0.59.0",
+    "stylus-loader": "^7.1.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

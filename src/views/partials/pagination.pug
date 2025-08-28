@@ -1,0 +1,66 @@
+//- src/views/partials/pagination.pug
+//- Usage:
+//-   include ./partials/pagination
+//-   +pager(page, totalPages, basePath)
+//- For index: basePath "" or "page"
+//- For taxonomy category: basePath like "/taxonomy/category/news"
+
+mixin pager(page, totalPages, basePath)
+  if totalPages > 1
+    nav.pagination
+      ul
+        - const current = Number(page)
+        - const last = Number(totalPages)
+        - const maxPagesToShow = 3
+
+        li
+          - const prev = current - 1
+          if current === 1
+            if basePath === '' || basePath === 'page'
+              span.prev-page.disabled &lt;
+            else
+              span.prev-page.disabled &lt;
+          else
+            if basePath === '' || basePath === 'page'
+              a.prev-page(href= basePath === '' ? (prev === 1 ? '/' : `/page/${prev}`) : `/page/${prev}`) &lt;
+            else
+              a.prev-page(href=`${basePath}?page=${prev}`) &lt;
+
+        //- Page numbers with ellipses after 5 pages
+        - let pages = []
+        if last <= maxPagesToShow + 1
+          - pages = [...Array(last).keys()].map(i => i + 1)
+        else
+          if current <= maxPagesToShow
+            - pages = [...Array(maxPagesToShow).keys()].map(i => i + 1)
+            - pages.push('ellipsis')
+            - pages.push(last)
+          else if current > last - maxPagesToShow + 1
+            - pages = [1, 'ellipsis']
+            - pages = pages.concat([...Array(maxPagesToShow).keys()].map(i => last - maxPagesToShow + i + 1))
+          else
+            - pages = [1, 'ellipsis', current - 1, current, current + 1, 'ellipsis', last]
+
+        each n in pages
+          if n === 'ellipsis'
+            li.ellipsis &hellip;
+          else
+            li
+              if n === current
+                span #[strong #{n}]
+              else
+                if basePath === '' || basePath === 'page'
+                  a(href= basePath === '' ? (n === 1 ? '/' : `/page/${n}`) : `/page/${n}`)= n
+                else
+                  a(href=`${basePath}?page=${n}`)= n
+
+        if current < last
+            li
+              - const next = current + 1
+              if basePath === '' || basePath === 'page'
+                a.next-page(href= basePath === '' ? `/page/${next}` : `/page/${next}`) >
+              else
+                a.next-page(href=`${basePath}?page=${next}`) >
+        else
+          li
+            span.dummy-spans

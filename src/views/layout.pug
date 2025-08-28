@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title #{title} | nodewp_hybrid
+    link(rel="stylesheet", href="/css/main.css")
+  body
+    include ./partials/_contact
+    .global-wrap
+        include ./partials/header
+        include ./partials/_banner
+        if success && success.length
+            .flash.flash--success
+                each msg in success
+                    p= msg
+        if error && error.length
+            .flash.flash--error
+                each msg in error
+                    p= msg
+
+        block content
+
+        include ./partials/footer
+    script(src="/js/live-search.js")
+    script(src="/js/contact-modal.js")

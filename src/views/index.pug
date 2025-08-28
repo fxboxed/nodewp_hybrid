@@ -1,0 +1,18 @@
+//- src/views/index.pug
+extends ./layout
+
+block content
+  if posts && posts.length
+    .index-cards
+        each p in posts
+          a(href=`/post/${p.slug}`).index-card
+            h2= p.title
+            p Posted in 
+              //- a(href=`/taxonomy/category/${p.category}`)= p.categoryName
+            //-p= p.excerpt
+            hr
+  else
+      p No posts found.
+
+  include ./partials/pagination
+  +pager(page, totalPages, basePath)

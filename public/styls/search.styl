@@ -1,0 +1,31 @@
+#searchForm
+    display flex
+    align-items center
+    padding .4rem
+    border 1px solid alpha + 50%
+    border-radius .2rem
+    max-width 300px
+    width 100%
+    position relative
+    background alpha //+ 10%
+    input#searchInput
+        flex-grow 1
+        padding .4rem
+        border 1px solid alpha + 50%
+        border-radius .2rem
+        background alpha + 20%
+        color alpha + 90%
+        &:focus
+            outline none
+            border-color alpha + 70%
+#searchResults
+  margin-top 1rem
+  list-style: none
+  position absolute
+  top 100%
+  left 0
+  right 0
+  background alpha //+ 20%
+  color alpha + 80%
+  //border 1px solid alpha + 50%
+  z-index 1000
